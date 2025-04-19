@@ -49,8 +49,13 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Book an Appointment</title>
-        <link rel="stylesheet" href="../assets/css/style.css">
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../assets/css/style.css">
+
     </head>
 
     <body>
@@ -118,13 +123,16 @@
                     <p>Follow us on social media</p>
                     <div class="social-icons">
                         <a href="https://facebook.com" target="_blank">
-                            <img src="../assets/images/social/facebook-icon.jpg" alt="Facebook">
+                            <!-- <img src="../assets/images/social/facebook-icon.jpg" alt="Facebook"> -->
+                            <i class="fab fa-facebook fa-lg"></i>
                         </a>
                         <a href="https://instagram.com" target="_blank">
-                            <img src="../assets/images/social/instagram-icon.jpg" alt="Instagram">
+                            <!-- <img src="../assets/images/social/instagram-icon.jpg" alt="Instagram"> -->
+                            <i class="fab fa-instagram fa-lg"></i>
                         </a>
                         <a href="https://twitter.com" target="_blank">
-                            <img src="../assets/images/social/twitter-icon.jpg" alt="Twitter">
+                            <!-- <img src="../assets/images/social/twitter-icon.jpg" alt="Twitter"> -->
+                            <i class="fab fa-twitter fa-lg"></i>
                         </a>
                     </div>
                 </div>
