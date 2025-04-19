@@ -109,7 +109,7 @@ $doctor = $result->fetch_assoc();
             <td>";
 
             if ($row['status'] == 'Pending') {
-              echo "<a href='../actions/confirm_appointment.php?id={$row['id']}' class='btn btn-success'>Confirm</a>";
+              echo "<a href='#' class='confirm-btn btn btn-success' data-id='{$row['id']}'>Confirm</a>";
             } elseif ($row['status'] == 'Confirmed') {
               echo "<a href='prescribe.php?appointment_id={$row['id']}&patient_id={$row['patient_id']}' class='btn btn-primary'>Prescribe</a>";
             }
@@ -118,26 +118,7 @@ $doctor = $result->fetch_assoc();
           }
           ?>
 
-          <!-- <tr>
-            <td>23/2/2025</td>
-            <td>11:00 AM</td>
-            <td>Nora Saad</td>
-            <td>15</td>
-            <td>Female</td>
-            <td>Headache</td>
-            <td>Pending</td>
-            <td><button>Confirm</button></td>
-          </tr>
-          <tr>
-            <td>16/7/2025</td>
-            <td>5:00 PM</td>
-            <td>Majed Ahmad</td>
-            <td>45</td>
-            <td>Male</td>
-            <td>Back pain</td>
-            <td>Confirmed</td>
-            <td><button disabled>Confirmed</button></td>
-          </tr> -->
+
         </tbody>
       </table>
     </section>
@@ -191,28 +172,7 @@ $doctor = $result->fetch_assoc();
               <td><?= $row['medications'] ?: "No medications prescribed"; ?></td>
             </tr>
           <?php } ?>
-          <!-- <tr>
-            <td>Leena Naser</td>
-            <td>40</td>
-            <td>Female</td>
-            <td>Antibiotics</td>
-            <td>
-              <button>
-                <a href="Prescribepage.html" style="color: white !important">Prescribe</a>
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>Majed Saleh</td>
-            <td>35</td>
-            <td>Male</td>
-            <td>N/A</td>
-            <td>
-              <button>
-                <a href="Prescribepage.html" style="color: white !important">Prescribe</a>
-              </button>
-            </td>
-          </tr> -->
+
         </tbody>
       </table>
     </section>
@@ -248,6 +208,10 @@ $doctor = $result->fetch_assoc();
       <p>&copy; 2024 All Rights Reserved.</p>
     </div>
   </footer>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/script.js"></script>
 </body>
 
 </html>

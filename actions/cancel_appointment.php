@@ -1,26 +1,18 @@
 <?php
 session_start();
-require_once "../includes/db_connection.php";
-require_once "../includes/auth.php";
+header('Content-Type: application/json');
 
-// Ensure appointment ID is provided
-if (!isset($_GET['id'])) {
-    header("Location: ../pages/patient_homepage.php?error=missing_id");
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
+    include('../includes/db_connection.php');
+
+    $appointmentId = $_POST['id'];
+
+    $stmt = $conn->prepare("DELETE FROM appointment WHERE id = ?");
+    $stmt->bind_param("i", $appointmentId);
+    $success = $stmt->execute();
+
+    echo json_encode($success); // returns true or false
     exit();
 }
 
-$appointment_id = $_GET['id'];
-
-// Delete appointment
-$delete_query = "DELETE FROM appointment WHERE id = ?";
-$stmt = $conn->prepare($delete_query);
-$stmt->bind_param("i", $appointment_id);
-
-if ($stmt->execute()) {
-    header("Location: ../views/patient_homepage.php?success=appointment_cancelled");
-} else {
-    header("Location: ../views/patient_homepage.php?error=delete_failed");
-}
-
-$stmt->close();
-$conn->close();
+echo json_encode(false);

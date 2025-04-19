@@ -91,9 +91,9 @@ $patient = $patient_result->fetch_assoc();
             <td>{$row['status']}</td>
             <td>";
         if ($row['status'] == 'Pending') {
-          echo "<a href='../actions/cancel_appointment.php?id={$row['id']}' class='btn btn-danger'>cancel</a>";
+          echo "<a href='' class='cancel-btn btn btn-danger' data-id='{$row['id']}'>cancel</a>";
         } elseif ($row['status'] == 'Confirmed') {
-          echo "<a href='../actions/cancel_appointment.php?id={$row['id']}' class='btn btn-danger'>cancel</a>";
+          echo "<a href='' class='cancel-btn btn btn-danger' data-id='{$row['id']}'>cancel</a>";
         } else {
           echo 'nothing to do';
         }
@@ -102,32 +102,6 @@ $patient = $patient_result->fetch_assoc();
       }
       ?>
 
-
-      <!-- <tr>
-        <td>2025-05-25</td>
-        <td>03:00 PM</td>
-        <td>Dr. Sara Ahmed</td>
-        <td>
-          <img
-            src="../assets/images/doctor1.png"
-            alt="doctor"
-            style="width: 40px; height: 40px" />
-        </td>
-        <td>Pending</td>
-        <td><a href="#">Cancel</a></td>
-      </tr>
-      <tr>
-        <td>2025-02-14</td>
-        <td>10:00 AM</td>
-        <td>Dr. Salah Abdullah</td>
-        <td>
-          <img
-            src="doctor2.png"
-            alt="doctor"
-            style="width: 40px; height: 40px" />
-        </td>
-        <td>Confirmed</td>
-        <td><a href="#">Cancel</a></td>-->
       </tr>
     </table>
   </section>
@@ -167,6 +141,10 @@ $patient = $patient_result->fetch_assoc();
       <p>&copy; 2024 All Rights Reserved.</p>
     </div>
   </footer>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/script.js"></script>
 </body>
 
 </html>
