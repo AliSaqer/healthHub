@@ -72,20 +72,20 @@
         <div class="container mt-5">
 
             <h1 style="color:black">Book an Appointment</h1>
-
-            <!-- First Form: Select Specialty -->
-            <label for="specialty">Select Specialty:</label>
-            <select name="specialty" id="specialty" required>
-                <option value="">-- Select Specialty --</option>
-                <?php while ($row = $resultSpeciality->fetch_assoc()): ?>
-                    <option value="<?= $row['id']; ?>">
-                        <?= $row['speciality']; ?>
-                    </option>
-                <?php endwhile; ?>
-            </select>
-
+            <div class="mb-5">
+                <!-- First Form: Select Specialty -->
+                <label for="specialty">Select Specialty:</label>
+                <select name="specialty" id="specialty" required>
+                    <option value="">-- Select Specialty --</option>
+                    <?php while ($row = $resultSpeciality->fetch_assoc()): ?>
+                        <option value="<?= $row['id']; ?>">
+                            <?= $row['speciality']; ?>
+                        </option>
+                    <?php endwhile; ?>
+                </select>
+            </div>
             <!-- Second Form: Select Doctor -->
-            <section id="doctor-section" style="display: none;" class="d-flex justify-content-center">
+            <section id="doctor-section" class="d-none justify-content-center">
                 <form method="POST" action="">
                     <input type="hidden" name="specialty" id="selectedSpecialtyInput" />
 

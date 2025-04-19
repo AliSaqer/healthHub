@@ -86,7 +86,7 @@ $(document).ready(function () {
               '<option value="' + doctor.id + '">' + doctor.name + "</option>"
             );
           });
-          $("#doctor-section").show();
+          $("#doctor-section").removeClass("d-none").addClass("d-flex");
         },
         error: function () {
           alert("Failed to load doctors.");
