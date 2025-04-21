@@ -55,6 +55,14 @@
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="../assets/css/style.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Playwrite+GB+S:ital,wght@0,100..400;1,100..400&display=swap');
+
+            h1,
+            p {
+                font-family: 'Playwrite GB S', sans-serif;
+            }
+        </style>
 
     </head>
 
@@ -64,26 +72,29 @@
         <header class="header">
             <div class="container-header">
                 <img src="../assets/images/logo.png" alt="Logo" style="width: 200px; height: 200px;">
-                <h1 style="color: white;">Welcome, Dr. [Doctor's Name]</h1>
+                <h1 style="color: white; font-size: 3rem;
+                font-weight: bold; margin: 0; text-align: center;
+                ">BOOKING BAGE</h1>
             </div>
         </header>
 
         <!-- Main Content -->
-        <div class="container mt-5">
-
-            <h1 style="color:black">Book an Appointment</h1>
-            <div class="mb-5">
-                <!-- First Form: Select Specialty -->
-                <label for="specialty">Select Specialty:</label>
-                <select name="specialty" id="specialty" required>
-                    <option value="">-- Select Specialty --</option>
-                    <?php while ($row = $resultSpeciality->fetch_assoc()): ?>
-                        <option value="<?= $row['id']; ?>">
-                            <?= $row['speciality']; ?>
-                        </option>
-                    <?php endwhile; ?>
-                </select>
-            </div>
+        <div class="container-fluid m-5 w-50 mx-auto">
+            <section>
+                <h1 style="color:black" class="m-3">Book an Appointment</h1>
+                <div class="mb-5">
+                    <!-- First Form: Select Specialty -->
+                    <label for="specialty">Select Specialty:</label>
+                    <select name="specialty" id="specialty" required>
+                        <option value="">-- Select Specialty --</option>
+                        <?php while ($row = $resultSpeciality->fetch_assoc()): ?>
+                            <option value="<?= $row['id']; ?>">
+                                <?= $row['speciality']; ?>
+                            </option>
+                        <?php endwhile; ?>
+                    </select>
+                </div>
+            </section>
             <!-- Second Form: Select Doctor -->
             <section id="doctor-section" class="d-none justify-content-center">
                 <form method="POST" action="">
@@ -120,19 +131,19 @@
                     <p>X:@heathhub</p>
                 </div>
                 <div class="social-media">
-                    <p>Follow us on social media</p>
+                    <p style="font-size: medium;" class="mb-3">Follow us on social media</p>
                     <div class="social-icons">
                         <a href="https://facebook.com" target="_blank">
                             <!-- <img src="../assets/images/social/facebook-icon.jpg" alt="Facebook"> -->
-                            <i class="fab fa-facebook fa-lg"></i>
+                            <i class="fab fa-facebook fa-lg"> facebook</i>
                         </a>
                         <a href="https://instagram.com" target="_blank">
                             <!-- <img src="../assets/images/social/instagram-icon.jpg" alt="Instagram"> -->
-                            <i class="fab fa-instagram fa-lg"></i>
+                            <i class="fab fa-instagram fa-lg"> instagram</i>
                         </a>
                         <a href="https://twitter.com" target="_blank">
                             <!-- <img src="../assets/images/social/twitter-icon.jpg" alt="Twitter"> -->
-                            <i class="fab fa-twitter fa-lg"></i>
+                            <i class="fab fa-twitter fa-lg"> twitter</i>
                         </a>
                     </div>
                 </div>

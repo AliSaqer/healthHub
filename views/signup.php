@@ -299,13 +299,13 @@ session_start();
                 <p>Follow us on social media</p>
                 <div class="social-icons">
                     <a href="https://facebook.com" target="_blank">
-                        <img src="facebook-icon.jpg" alt="Facebook">
+                        <img src="../assets/images/social/facebook-icon.jpg" alt="Facebook">
                     </a>
                     <a href="https://instagram.com" target="_blank">
-                        <img src="instagram-icon.jpg" alt="Instagram">
+                        <img src="../assets/images/social/instagram-icon.jpg" alt="Instagram">
                     </a>
                     <a href="https://twitter.com" target="_blank">
-                        <img src="twitter-icon.jpg" alt="Twitter">
+                        <img src="../assets/images/social/twitter-icon.jpg" alt="Twitter">
                     </a>
                 </div>
             </div>
