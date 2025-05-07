@@ -54,13 +54,29 @@ $(document).ready(function () {
       dataType: "json", // tells jQuery to expect JSON
       success: function (response) {
         if (response === true) {
-          location.reload();
+          // location.reload();
+          $("#appointment_" + appointmentId)
+            .find(".status")
+            .text("Confirmed");
+          console.log(status);
+
+          $("#appointment_" + appointmentId)
+            .find(".confirm-btn")
+            .replaceWith(
+              `<a href='prescribe.php?appointment_id={$row['id']}&patient_id={$row['patient_id']}' class='btn btn-primary'>Prescribe</a>`
+            );
+
+          Swal.fire({
+            title: "CONFIRMED!",
+            icon: "success",
+            draggable: true,
+          });
         } else {
           alert("Failed to confirm appointment.");
         }
       },
       error: function (xhr, status, error) {
-        console.log("XHR:", xhr.responseText);
+        // console.log("XHR:", xhr.responseText);
         alert("Error with AJAX request.");
       },
     });
@@ -78,6 +94,7 @@ $(document).ready(function () {
         data: { specialty: specialtyId },
         dataType: "json",
         success: function (data) {
+          console.log(data);
           $("#doctor")
             .empty()
             .append('<option value="">-- Select Doctor --</option>');

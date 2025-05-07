@@ -64,6 +64,7 @@
             }
         </style>
 
+
     </head>
 
     <body>
@@ -120,6 +121,9 @@
             </section>
 
         </div>
+        <button style="margin-bottom: 10px">
+            <a href="../index.php" style="color: white !important">Sign-out</a>
+        </button>
 
         <!-- Footer Section -->
         <footer>

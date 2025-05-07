@@ -20,6 +20,7 @@ $doctor = $result->fetch_assoc();
 ?>
 
 
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,6 +29,11 @@ $doctor = $result->fetch_assoc();
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Doctor's Homepage</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -50,6 +56,7 @@ $doctor = $result->fetch_assoc();
       <div>
         <img src="<?php echo $doctor['uniqueFileName']; ?>" alt="Doctor Photo" style="width: 150px; height: 150px; border-radius: 50%;">
       </div>
+
     </section>
 
 
@@ -98,20 +105,24 @@ $doctor = $result->fetch_assoc();
             $today = new DateTime();
             $age = $today->diff($dob)->y;
 
-            echo "<tr>
+            echo "<tr id='appointment_{$row['id']}'>
             <td>{$row['date']}</td>
             <td>{$row['time']}</td>
             <td>{$row['firstName']} {$row['lastName']}</td>
             <td>{$age}</td>
             <td>{$row['gender']}</td>
             <td>{$row['reason']}</td>
-            <td>{$row['status']}</td>
+            <td class='status'>{$row['status']}</td>
             <td>";
 
             if ($row['status'] == 'Pending') {
               echo "<a href='#' class='confirm-btn btn btn-success' data-id='{$row['id']}'>Confirm</a>";
             } elseif ($row['status'] == 'Confirmed') {
-              echo "<a href='prescribe.php?appointment_id={$row['id']}&patient_id={$row['patient_id']}' class='btn btn-primary'>Prescribe</a>";
+              echo "<button class='btn btn-primary prescribe-btn' 
+              data-bs-toggle='modal'
+              data-bs-target='#prescriptionModal'
+              data-appointment='{$row['id']}'
+              data-patient='{$row['patient_id']}'>Prescribe</button>";
             }
 
             echo "</td></tr>";
@@ -176,9 +187,12 @@ $doctor = $result->fetch_assoc();
         </tbody>
       </table>
     </section>
-    <button style="margin-bottom: 10px">
-      <a href="../index.php" style="color: white !important">Sign-out</a>
-    </button>
+    <div style="text-align: center;" class="m-4">
+      <button class="btn btn-danger mt-3" style="width: 100%; max-width: 200px; transition: transform 0.5s;" onmouseover="this.style.transform='scale(1.1)'" onmouseout="this.style.transform='scale(1)'">
+        <a href="../index.php" style="color: white !important; text-decoration: none;">Sign-out</a>
+      </button>
+
+    </div>
   </main>
 
   <footer>
@@ -190,16 +204,19 @@ $doctor = $result->fetch_assoc();
         <p>X:@heathhub</p>
       </div>
       <div class="social-media">
-        <p>Follow us on social media</p>
+        <p style="font-size: medium;" class="mb-3">Follow us on social media</p>
         <div class="social-icons">
           <a href="https://facebook.com" target="_blank">
-            <img src="../assets/images/social/facebook-icon.jpg" alt="Facebook" />
+            <!-- <img src="../assets/images/social/facebook-icon.jpg" alt="Facebook"> -->
+            <i class="fab fa-facebook fa-lg"> facebook</i>
           </a>
           <a href="https://instagram.com" target="_blank">
-            <img src="../assets/images/social/instagram-icon.jpg" alt="Instagram" />
+            <!-- <img src="../assets/images/social/instagram-icon.jpg" alt="Instagram"> -->
+            <i class="fab fa-instagram fa-lg"> instagram</i>
           </a>
           <a href="https://twitter.com" target="_blank">
-            <img src="../assets/images/social/twitter-icon.jpg" alt="Twitter" />
+            <!-- <img src="../assets/images/social/twitter-icon.jpg" alt="Twitter"> -->
+            <i class="fab fa-twitter fa-lg"> twitter</i>
           </a>
         </div>
       </div>
@@ -208,10 +225,44 @@ $doctor = $result->fetch_assoc();
       <p>&copy; 2024 All Rights Reserved.</p>
     </div>
   </footer>
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  //prescripe modal
+  <div class="modal fade" id="prescribeModal" tabindex="-1" aria-labelledby="prescribeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg"> <!-- Larger width -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="prescribeModalLabel">Prescribe Medication</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="prescribeModalBody">
+          <!-- Form will be loaded here via AJAX -->
+          Loading...
+        </div>
+      </div>
+    </div>
+  </div>
+  //end of modal
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
   <script src="../assets/js/script.js"></script>
+  <script>
+    $(document).on("click", ".prescribe-btn", function() {
+      var appointmentId = $(this).data("appointment");
+      var patientId = $(this).data("patient");
+
+      $("#prescribeModalBody").load(
+        "../modals/prescribe_form.php", // Copy form content from prescribe_page here
+        {
+          appointment_id: appointmentId,
+          patient_id: patientId
+        },
+        function() {
+          // Initialize the modal after loading the content
+          $("#prescribeModal").modal("show");
+        }
+      );
+    });
+  </script>
 </body>
 
 </html>
